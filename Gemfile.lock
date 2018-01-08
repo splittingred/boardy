@@ -97,6 +97,7 @@ GEM
       activesupport (>= 4.2.0)
     hashie (3.5.7)
     hitimes (1.2.6)
+    htmlentities (4.3.4)
     httparty (0.15.6)
       multi_xml (>= 0.5.2)
     i18n (0.9.1)
@@ -224,6 +225,8 @@ DEPENDENCIES
   celluloid-io
   dotenv-rails
   faraday
+  hashie
+  htmlentities
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
   mysql2

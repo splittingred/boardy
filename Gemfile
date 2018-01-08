@@ -19,6 +19,8 @@ gem 'bgg', git: 'git@github.com:carmstrong/bgg.git'
 gem 'slack-ruby-bot'
 gem 'celluloid-io'
 gem 'faraday'
+gem 'hashie'
+gem 'htmlentities'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

@@ -1,3 +1,5 @@
+require_relative 'bgg_api_patches'
+
 module SlackRubyBot
   module Commands
     class Base
