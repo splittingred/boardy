@@ -2,6 +2,7 @@ require 'slack-ruby-bot'
 SlackRubyBot::Commands::Base.command_classes = []
 require 'patches'
 require 'boardy/bot'
+require 'bgg_api'
 
 Dir["#{Rails.root}/app/services/commands/**/*.rb"].each { |f| load(f) unless f.include?('base.rb') }
 

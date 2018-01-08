@@ -5,7 +5,7 @@ module Commands
 
       def call
         result = ::BggApi.collection(expression)
-        say result.inspect
+        say "#{expression} has #{result.count} games."
       end
     end
   end

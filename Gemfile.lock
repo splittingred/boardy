@@ -1,3 +1,11 @@
+GIT
+  remote: git@github.com:carmstrong/bgg.git
+  revision: cac7dde4a8c4f3bebabacfb631e4a4b1fc178c72
+  specs:
+    bgg (1.0.1)
+      httparty
+      xml-simple
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -43,9 +51,6 @@ GEM
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
       rack (>= 0.9.0)
-    bgg (1.0.1)
-      httparty
-      xml-simple
     bindex (0.5.0)
     binding_of_caller (0.7.3)
       debug_inspector (>= 0.0.1)
@@ -213,7 +218,7 @@ PLATFORMS
 
 DEPENDENCIES
   better_errors (~> 2.1.1)
-  bgg
+  bgg!
   binding_of_caller (~> 0.7.2)
   byebug
   celluloid-io

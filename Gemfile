@@ -15,7 +15,7 @@ gem 'sqlite3'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'settingslogic'
 
-gem 'bgg'
+gem 'bgg', git: 'git@github.com:carmstrong/bgg.git'
 gem 'slack-ruby-bot'
 gem 'celluloid-io'
 gem 'faraday'
