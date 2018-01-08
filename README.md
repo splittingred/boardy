@@ -1,24 +1,17 @@
-# README
+# Boardy - The Slack boardgamegeek.com bot
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+To run, copy .env-example to .env, then edit API key, then:
 
-Things you may want to cover:
+```
+bin/bot
+```
 
-* Ruby version
+## Commands
 
-* System dependencies
+> game [Game Name]
 
-* Configuration
+Will display info about a game.
 
-* Database creation
+> Does [username] have [game]?
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Will display if said user has the game in their collection.
