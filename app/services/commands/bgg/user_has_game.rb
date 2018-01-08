@@ -17,7 +17,7 @@ module Commands
         if game
           say "#{username} has #{game.name}!"
         else
-          say "User does not have #{desired_game}"
+          say "#{username} does not have #{desired_game}"
         end
       rescue StandardError => e
         say "Oops! Failed: #{e.message}"
