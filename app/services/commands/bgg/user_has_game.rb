@@ -4,7 +4,7 @@ module Commands
       on :match, /does (.*) have (.*)\?/i
 
       def call
-        username = match[1]
+        username = translator.translate(match[1])
         desired_game = match[2]
 
         collection = ::BggApi.collection(username)
@@ -20,6 +20,12 @@ module Commands
         else
           say "User does not have #{desired_game}"
         end
+      end
+
+      private
+
+      def translator
+        @translator ||= Bgg::UsernameMap.new
       end
     end
   end

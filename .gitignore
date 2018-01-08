@@ -37,3 +37,5 @@
 .pry_history
 # ignore this stupid stuff
 *.DS_Store
+
+config/users.yml
