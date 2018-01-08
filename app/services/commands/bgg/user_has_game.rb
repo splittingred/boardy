@@ -13,12 +13,12 @@ module Commands
           return
         end
 
-        game = collection.select { |g| g.name.to_s.downcase == desired_game.to_s.downcase && g.owned? }.first
+        game = collection.select { |g| g.name.to_s.downcase.include?(desired_game.to_s.downcase) && g.owned? }.first
         if game
           say "#{username} has #{game.name}!"
+          ::Messages::Bgg::Game.new(game.game).publish(channel)
         else
           say "User does not have #{desired_game}"
-          say collection.inspect
         end
       end
     end
