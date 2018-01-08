@@ -26,7 +26,7 @@ module Commands
       private
 
       def translator
-        @translator ||= Bgg::UsernameMap.new
+        @translator ||= ::Bgg::UsernameMap.new
       end
     end
   end
