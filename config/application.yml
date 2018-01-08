@@ -1,0 +1,19 @@
+defaults: &defaults
+  url: "https://ag-boardy.herokuapp.com"
+  logging: &logging
+    level: "<%= ENV.fetch('LOG_LEVEL', 'info') %>"
+    slack_bot_level: "<%= ENV.fetch('SLACK_API_LOG_LEVEL', 'info') %>"
+    slack_api_level: "<%= ENV.fetch('SLACK_BOT_LOG_LEVEL', 'info') %>"
+
+  slack: &slack
+    api_token: ''
+
+development: &development
+  <<: *defaults
+
+test: &test
+  <<: *defaults
+  url: 'http://localhost:5000'
+
+production: &production
+  <<: *defaults
