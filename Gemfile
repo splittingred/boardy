@@ -10,6 +10,7 @@ gem 'mysql2'
 gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
 gem 'jbuilder', '~> 2.5'
+gem 'sqlite3'
 
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'settingslogic'
