@@ -16,10 +16,11 @@ module Commands
         game = collection.select { |g| g.name.to_s.downcase.include?(desired_game.to_s.downcase) && g.owned? }.first
         if game
           say "#{username} has #{game.name}!"
-          ::Messages::Bgg::Game.new(game.game).publish(channel)
         else
           say "User does not have #{desired_game}"
         end
+      rescue StandardError => e
+        say "Oops! Failed: #{e.message}"
       end
 
       private
