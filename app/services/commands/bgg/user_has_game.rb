@@ -20,7 +20,11 @@ module Commands
           say "#{username} does not have #{desired_game}"
         end
       rescue StandardError => e
-        say "Oops! Failed: #{e.message}"
+        if e.message.include?('202')
+          say "Boardgamegeek is currently processing this request. Try back in a few."
+        else
+          say "Oops! Failed: #{e.message}"
+        end
       end
 
       private
