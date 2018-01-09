@@ -11,11 +11,9 @@ gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
 gem 'jbuilder', '~> 2.5'
 gem 'sqlite3'
-
-gem 'dotenv-rails', groups: [:development, :test]
 gem 'settingslogic'
 
-gem 'bgg', git: 'git@github.com:carmstrong/bgg.git'
+gem 'bgg', git: 'https://github.com/carmstrong/bgg.git'
 gem 'slack-ruby-bot'
 gem 'celluloid-io'
 gem 'faraday'
@@ -26,6 +24,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'better_errors', '~> 2.1.1'
   gem 'binding_of_caller', '~> 0.7.2'
+  gem 'dotenv-rails'
 end
 
 group :development do

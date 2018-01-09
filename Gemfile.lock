@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:carmstrong/bgg.git
+  remote: https://github.com/carmstrong/bgg.git
   revision: cac7dde4a8c4f3bebabacfb631e4a4b1fc178c72
   specs:
     bgg (1.0.1)
