@@ -29,6 +29,7 @@ module Boardy
     config.generators.system_tests = nil
 
     config.eager_load_paths << "#{config.root}/lib"
+    config.eager_load_paths << "#{config.root}/app/domains"
     config.eager_load_paths << "#{config.root}/app/services"
   end
 end

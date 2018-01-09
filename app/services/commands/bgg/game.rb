@@ -3,18 +3,15 @@ module Commands
     class Game < ::Commands::Base
       on :command, 'game'
 
-      def call
-        result = ::BggApi.search(expression, type: 'boardgame', exact: true, stats: 1)
-        unless !result || result.xml.xpath('errors/error/message').children.first.to_s.empty?
-          say result.xml.xpath('errors/error/message').children.first.to_s
-          return
-        end
+      include ::Import[
+        games_service: 'games.service'
+      ]
 
-        if result.first
-          ::Messages::Bgg::Game.new(result.first.game).publish(channel)
-        else
-          say "Cannot find #{expression}"
-        end
+      def call
+        game = games_service.find_by_name(expression.to_s)
+        ::Messages::Bgg::Game.new(game).publish(channel)
+      rescue Games::Errors::GameNotFound => _
+        say "Game #{expression} not found"
       end
     end
   end

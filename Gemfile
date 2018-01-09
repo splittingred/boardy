@@ -14,6 +14,7 @@ gem 'sqlite3'
 
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'settingslogic'
+gem 'dry-system'
 
 gem 'bgg', git: 'git@github.com:carmstrong/bgg.git'
 gem 'slack-ruby-bot'
