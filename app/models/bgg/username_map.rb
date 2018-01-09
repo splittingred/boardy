@@ -47,7 +47,7 @@ module Bgg
 
     def load_from_file
       users = {}
-      YAML.load(File.read(file_path)).deep_symbolize_keys
+      data = YAML.load(File.read(file_path)).deep_symbolize_keys
       data[:users].each do |u|
         ux = u.split(':')
         users[ux[0].to_sym] = ux[1]
