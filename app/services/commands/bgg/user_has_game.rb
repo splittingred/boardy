@@ -3,24 +3,24 @@ module Commands
     class UserHasGame < ::Commands::Base
       on :match, /does (.*) have (.*)\?/i
 
+      include ::Import[
+        games_service: 'games.service'
+      ]
+
       def call
         username = translator.translate(match[1])
         desired_game = match[2]
 
-        collection = ::BggApi.collection(username)
-        unless !collection || collection.xml.xpath('errors/error/message').children.first.to_s.empty?
-          say collection.xml.xpath('errors/error/message').children.first.to_s
-          return
-        end
-
-        game = collection.select { |g| g.name.to_s.downcase.include?(desired_game.to_s.downcase) && g.owned? }.first
+        game = games_service.user_has_game?(user: username, game: desired_game)
         if game
           say "#{username} has #{game.name}!"
         else
           say "#{username} does not have #{desired_game}"
         end
+      rescue Games::Errors::ResultProcessing
+        say 'Boardgamegeek is currently processing this request. Try back in a few.'
       rescue StandardError => e
-        say "Oops! Failed: #{e.message}"
+        say e.message
       end
 
       private

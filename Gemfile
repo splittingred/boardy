@@ -7,6 +7,7 @@ end
 
 gem 'bgg', git: 'https://github.com/carmstrong/bgg.git'
 gem 'celluloid-io'
+gem 'dry-system'
 gem 'faraday'
 gem 'foreman'
 gem 'hashie'
@@ -22,17 +23,17 @@ gem 'jbuilder', '~> 2.5'
 gem 'sass-rails', '~> 5.0'
 
 group :development, :test do
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'better_errors', '~> 2.1.1'
   gem 'binding_of_caller', '~> 0.7.2'
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'dotenv-rails'
 end
 
 group :development do
-  gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'web-console', '>= 3.3.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
