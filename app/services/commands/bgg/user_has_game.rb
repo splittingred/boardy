@@ -13,7 +13,17 @@ module Commands
 
         game = games_service.user_has_game?(user: username, game: desired_game)
         if game
-          say "#{username} has #{game.name}!"
+          if game.owned?
+            say "Yes! #{username} has #{game.name}!"
+          elsif game.preordered?
+            say "#{username} has preordered #{game.name}."
+          elsif game.want_to_buy?
+            say "#{username} wants to buy #{game.name}, but does not own it."
+          elsif game.want_to_play?
+            say "#{username} wants to play #{game.name}, but does not own it."
+          else
+            say "#{username} wants #{game.name}, but does not own it."
+          end
         else
           say "#{username} does not have #{desired_game}"
         end

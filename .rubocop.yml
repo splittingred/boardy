@@ -1,0 +1,17 @@
+inherit_from: .rubocop_todo.yml
+
+AllCops:
+  TargetRubyVersion: 2.3
+  Exclude:
+    - spec/**/*
+    - .bundle/**/*
+    - bin/**/*
+    - vendor/**/*
+    - db/migrate/*
+    - db/seeds/**/*
+    - db/schema.rb
+    - tmp/**/*
+    - log/**/*
+    - lib/tasks/**/*
+    - config/**/*
+    - lib/settings.rb

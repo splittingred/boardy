@@ -26,7 +26,7 @@ module Games
       error = collection.xml.xpath('errors/error/message').children.first.to_s
       raise StandardError, error if error.present?
 
-      result = collection.select { |g| g.name.to_s.downcase.include?(game) && g.owned? }.first
+      result = collection.select { |g| g.name.to_s.downcase.include?(game) }.first
       result ? result : false
     rescue StandardError || RuntimeError => e
       raise Games::Errors::ResultProcessing if e.message.include?('202')
