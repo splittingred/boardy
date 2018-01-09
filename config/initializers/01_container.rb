@@ -13,4 +13,4 @@ class App < Dry::System::Container
 end
 
 Import = App.injector
-App.finalize! if Rails.env.production?
+#App.finalize! if Rails.env.production?
