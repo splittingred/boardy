@@ -7,7 +7,8 @@ module Bgg
                 :image, :max_players, :mechanics, :min_players,
                 :name, :names, :playing_time, :publishers,
                 :recommended_minimum_age, :thumbnail,
-                :year_published, :game_data, :stats
+                :year_published, :game_data, :stats,
+                :min_playtime, :max_playtime
 
     def initialize(game_data)
       @game_data = game_data
@@ -27,6 +28,8 @@ module Bgg
       @mechanics = filter_links_for('boardgamemechanic')
       @min_players = game_data['minplayers'][0]['value'].to_i
       @playing_time = game_data['playingtime'][0]['value'].to_i
+      @min_playtime = game_data['minplaytime'][0]['value'].to_i
+      @max_playtime = game_data['maxplaytime'][0]['value'].to_i
       @publishers = filter_links_for('boardgamepublisher')
       @recommended_minimum_age = game_data['minage'][0]['value'].to_i
       @thumbnail = game_data['thumbnail'][0]
@@ -40,7 +43,7 @@ module Bgg
         raise ArgumentError, 'game_id must be greater than 0!'
       end
 
-      game_data = BggApi.thing(id: game_id, type: 'boardgame', stats: 1)
+      game_data = ::BggApi.thing(id: game_id, type: 'boardgame', stats: 1)
       unless game_data.has_key?('item')
         raise ArgumentError, 'Game does not exist'
       end

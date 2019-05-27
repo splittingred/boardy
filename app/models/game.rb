@@ -2,4 +2,5 @@ class Game < ApplicationRecord
   validates_presence_of :name, :bgg_id
 
   scope :with_name, ->(name) { where(name: name) }
+  scope :with_bgg_id, ->(bgg_id) { where(bgg_id: bgg_id) }
 end
