@@ -27,7 +27,7 @@ module Messages
               fields: [
                 {
                   title: 'Playing Time',
-                  value: "#{game.playing_time} min",
+                  value: "#{game.min_playtime}-#{game.max_playtime} min",
                   short: true
                 },{
                   title: '# Players',
@@ -35,23 +35,23 @@ module Messages
                   short: true
                 },{
                   title: 'Rank',
-                  value: game.stats.board_game_rank.to_s,
+                  value: game.board_game_rank.to_s,
                   short: true
                 },{
                   title: 'Strategic Rank',
-                  value: game.stats.strategic_rank.to_s,
+                  value: game.strategic_rank.to_s,
                   short: true
                 },{
                   title: 'Thematic Rank',
-                  value: game.stats.thematic_rank.to_s,
+                  value: game.thematic_rank.to_s,
                   short: true
                 },{
                   title: 'Rating',
-                  value: game.stats.average_rating,
+                  value: game.average_rating,
                   short: true
                 },{
                   title: 'Mechanics',
-                  value: game.mechanics.join(', '),
+                  value: game.mechanics,
                   short: false
                 }
               ],
@@ -66,11 +66,11 @@ module Messages
       private
 
       def link
-        "https://boardgamegeek.com/boardgame/#{game.id}"
+        "https://boardgamegeek.com/boardgame/#{game.bgg_id}"
       end
 
       def footer
-        "#{game.categories.join(', ')}. By #{game.artists.join(', ')} in #{game.year_published}"
+        "" # "#{game.categories.join(', ')}. By #{game.artists.join(', ')} in #{game.year_published}"
       end
     end
   end

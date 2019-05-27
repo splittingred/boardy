@@ -2,6 +2,7 @@ module Commands
   module Bgg
     class UserHasGame < ::Commands::Base
       on :match, /does (.*) have (.*)\?/i
+      on :match, /does (.*) have (.*)/i
 
       include ::Import[
         games_service: 'games.service'
