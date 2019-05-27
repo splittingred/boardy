@@ -14,10 +14,13 @@ module Games
         end
 
         game = map_game(result.first.game)
+        raise Games::Errors::GameNotFound, "Game not found with name: #{name}" unless game
       end
       game
     rescue StandardError || RuntimeError => e
       raise Games::Errors::ResultProcessing if e.message.include?('202')
+      logger.error "Error loading game: #{e.message}"
+      raise Games::Errors::Unknown, "Unknown error finding game #{name}"
     end
 
     ##
@@ -38,6 +41,7 @@ module Games
       result ? result : false
     rescue StandardError || RuntimeError => e
       raise Games::Errors::ResultProcessing if e.message.include?('202')
+      logger.error "Error loading game: #{e.message}"
       raise
     end
 
@@ -48,6 +52,7 @@ module Games
       ::BggApi.collection(user, subtype: 'boardgame')
     rescue StandardError || RuntimeError => e
       raise Games::Errors::ResultProcessing if e.message.include?('202')
+      logger.error "Error loading collection: #{e.message}"
       raise
     end
 
