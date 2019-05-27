@@ -2,6 +2,10 @@ require 'htmlentities'
 
 module Games
   class Service
+    include Import[
+      logger: 'logger'
+    ]
+
     ##
     # @return [Bgg::Game]
     #
