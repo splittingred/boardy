@@ -41,5 +41,7 @@
 .bashrc
 .rvmrc
 .rvm
+.ssh
+.zshrc
 
 config/users.yml
