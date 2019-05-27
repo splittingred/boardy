@@ -43,5 +43,6 @@
 .rvm
 .ssh
 .zshrc
+TODO.yml
 
 config/users.yml
