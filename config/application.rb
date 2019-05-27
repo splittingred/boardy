@@ -15,6 +15,7 @@ require "sprockets/railtie"
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
+Dotenv.overload
 
 module Boardy
   class Application < Rails::Application
@@ -31,5 +32,10 @@ module Boardy
     config.eager_load_paths << "#{config.root}/lib"
     config.eager_load_paths << "#{config.root}/app/domains"
     config.eager_load_paths << "#{config.root}/app/services"
+
+    # for things to happen pre-fork
+    config.before_fork_callbacks = []
+    # for things to happen after-fork
+    config.after_fork_callbacks = []
   end
 end

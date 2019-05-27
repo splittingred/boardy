@@ -24,7 +24,7 @@ module Games
     rescue StandardError || RuntimeError => e
       raise Games::Errors::ResultProcessing if e.message.include?('202')
       logger.error "Error loading game: #{e.message}"
-      raise Games::Errors::Unknown, "Unknown error finding game #{name}"
+      raise
     end
 
     ##
