@@ -37,5 +37,9 @@
 .pry_history
 # ignore this stupid stuff
 *.DS_Store
+.bash_history
+.bashrc
+.rvmrc
+.rvm
 
 config/users.yml
