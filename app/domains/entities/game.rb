@@ -19,6 +19,7 @@ module Entities
     attribute :users_rated,     Types::Integer
     attribute :owners,          Types::Integer
     attribute :mechanics,       Types::Array.of(Types::String)
+    attribute :owned_by,        Types::Array.of(Types::String)
     attribute :created_at, Types::DateTime
     attribute :updated_at, Types::DateTime.optional
   end

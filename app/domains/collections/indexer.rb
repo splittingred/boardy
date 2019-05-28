@@ -7,7 +7,7 @@ module Collections
     ]
 
     def index(username:, reindex: false, channel: nil)
-      logger.info "Indexing user: #{username}"
+      logger.info "Indexing collection for user: #{username}"
       user = users_repository.find_by_bgg_username(username)
       collection = lookup(user: user)
       collection.each do |item|

@@ -8,6 +8,8 @@ class Game < ApplicationRecord
   validates_presence_of :name, :bgg_id
 
   def to_entity
+    owned_by = users.where(user_games: { owned: true }).map(&:bgg_username)
+
     Entities::Game.new(
       id: id,
       bgg_id: bgg_id,
@@ -27,6 +29,7 @@ class Game < ApplicationRecord
       average_rating: average_rating,
       users_rated: users_rated,
       owners: owners,
+      owned_by: owned_by,
       mechanics: mechanics.split(',')
     )
   end

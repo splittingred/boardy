@@ -7,7 +7,7 @@ module Games
     ]
 
     ##
-    # @return [Bgg::Game]
+    # @return [Entities::Game]
     #
     def find_by_name(name)
       game = load(name)
@@ -20,7 +20,7 @@ module Games
         game = map_game(result.first.game)
         raise Games::Errors::GameNotFound, "Game not found with name: #{name}" unless game
       end
-      game
+      game.to_entity
     rescue StandardError || RuntimeError => e
       raise Games::Errors::ResultProcessing if e.message.include?('202')
       logger.error "Error loading game: #{e.message}"
