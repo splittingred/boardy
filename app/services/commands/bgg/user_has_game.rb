@@ -4,15 +4,11 @@ module Commands
       on :match, /does (.*) have (.*)\?/i
       on :match, /does (.*) have (.*)/i
 
-      include ::Import[
-        games_service: 'games.service'
-      ]
-
       def call
         username = translator.translate(match[1])
         desired_game = match[2]
 
-        game = games_service.user_has_game?(user: username, game: desired_game)
+        game = games.user_has_game?(user: username, game: desired_game)
         if game
           if game.owned?
             say "Yes! #{username} has #{game.name}!"

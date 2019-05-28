@@ -19,3 +19,9 @@ SlackRubyBot.configure do |config|
   config.logger.level = Logger.const_get(Settings.logging.slack_bot_level.to_s.upcase.to_sym)
 end
 
+Slack::RealTime.configure do |config|
+  config.concurrency = Slack::RealTime::Concurrency::Async
+  config.start_options[:simple_latest] = true
+  config.start_options[:no_unreads] = true
+  config.start_options[:request][:timeout] = 360
+end

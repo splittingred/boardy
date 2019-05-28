@@ -9,6 +9,8 @@ module Entities
     attribute :first_name, Types::String
     attribute :last_name, Types::String
     attribute :title, Types::String
+    attribute :collection_indexed, Types::Bool
+    attribute :games, Types::Array.of(Entities::UserGame)
     attribute :created_at, Types::DateTime
     attribute :updated_at, Types::DateTime.optional
 
@@ -22,6 +24,21 @@ module Entities
     #
     def at
       "<@#{slack_id}>"
+    end
+
+    ##
+    # @param [String] game_name
+    # @return [Boolean]
+    #
+    def played?(game_name)
+      games.any? { |game| game.game_name == game_name }
+    end
+
+    ##
+    # @return [Boolean]
+    #
+    def collection_indexed?
+      collection_indexed
     end
   end
 end

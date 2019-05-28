@@ -4,7 +4,9 @@ defaults: &defaults
     level: "<%= ENV.fetch('LOG_LEVEL', 'info') %>"
     slack_bot_level: "<%= ENV.fetch('SLACK_API_LOG_LEVEL', 'info') %>"
     slack_api_level: "<%= ENV.fetch('SLACK_BOT_LOG_LEVEL', 'info') %>"
-
+  redis: &redis
+    url: "<%= ENV.fetch('REDIS_URL', 'redis://localhost:6379/0/cache') %>"
+    password: "<%= ENV.fetch('REDIS_PASSWORD', '') %>"
   slack: &slack
     api_token: ''
 

@@ -7,19 +7,21 @@ module Commands
     attr_accessor :user
     attr_reader :obj_user
     attr_accessor :match
+    attr_reader :users, :games
 
     def initialize(client, data, match)
       @client = client
       @data = data
       @match = match
-      @users_repository = App['users.repository']
+      @users = App['users.repository']
+      @games = App['games.service']
       user
     end
 
     def user
       unless @user.present?
         raise Users::Errors::UserNotFound, 'No user present in base command data' unless data.user
-        @user = @users_repository.find_by_slack_id(data.user)
+        @user = @users.find_by_slack_id(data.user)
         raise Users::Errors::UserNotFound, "User not found with ID: #{data.user}" unless @user.present?
       end
       @user
@@ -62,6 +64,24 @@ module Commands
 
     def expression
       match[:expression].to_s
+    end
+
+    ##
+    # @return [String]
+    #
+    def unescape_string(str)
+      ::Slack::Messages::Formatting.unescape(str)
+    end
+
+    ##
+    # @return [String]
+    #
+    def unescaped_expression
+      unescape_string(expression.to_s.strip)
+    end
+
+    def clean_slack_username(username)
+      unescape_string(username.split(' ').first).delete('@')
     end
 
     def logger

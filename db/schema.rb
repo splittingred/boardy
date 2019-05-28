@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190528003050) do
+ActiveRecord::Schema.define(version: 2019_05_28_155048) do
 
-  create_table "games", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "games", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "bgg_id"
     t.string "name"
     t.text "description"
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20190528003050) do
     t.integer "board_game_rank", default: 0
     t.integer "strategic_rank", default: 0
     t.integer "thematic_rank", default: 0
-    t.float "average_rating", limit: 24, default: 0.0
+    t.float "average_rating", default: 0.0
     t.text "mechanics"
     t.index ["average_rating"], name: "index_games_on_average_rating"
     t.index ["bgg_id"], name: "index_games_on_bgg_id"
@@ -44,7 +44,21 @@ ActiveRecord::Schema.define(version: 20190528003050) do
     t.index ["thematic_rank"], name: "index_games_on_thematic_rank"
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "user_games", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "game_id"
+    t.boolean "owned", default: false
+    t.float "user_rating", default: 0.0
+    t.integer "play_count", default: 0
+    t.boolean "for_trade", default: false
+    t.boolean "want_to_buy", default: false
+    t.boolean "want_to_play", default: false
+    t.index ["game_id"], name: "index_user_games_on_game_id"
+    t.index ["user_id", "game_id"], name: "index_user_games_on_user_id_and_game_id"
+    t.index ["user_id"], name: "index_user_games_on_user_id"
+  end
+
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "bgg_username"
     t.string "slack_id"
     t.string "slack_team_id"
@@ -55,6 +69,7 @@ ActiveRecord::Schema.define(version: 20190528003050) do
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "collection_indexed", default: false
     t.index ["bgg_username"], name: "index_users_on_bgg_username"
     t.index ["email"], name: "index_users_on_email"
     t.index ["slack_id"], name: "index_users_on_slack_id"

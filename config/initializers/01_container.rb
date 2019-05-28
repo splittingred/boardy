@@ -12,6 +12,8 @@ class App < Dry::System::Container
   load_paths!('lib', 'app', 'app/domains')
 
   register 'logger', Rails.logger
+  register 'redis', Storage::Redis.instance.client
+  register 'slack.web.client', ::Slack::Web::Client.new(token: ENV['SLACK_API_TOKEN'])
 end
 
 Import = App.injector

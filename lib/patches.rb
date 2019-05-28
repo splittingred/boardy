@@ -14,9 +14,9 @@ module SlackRubyBot
 
         def excluded_classes
           [
-              #::Boardy::Commands::Base,
-              ::Boardy::Bot,
-              ::Commands::Base
+            #::Boardy::Commands::Base,
+            ::Boardy::Bot,
+            ::Commands::Base
           ]
         end
 
@@ -26,10 +26,13 @@ module SlackRubyBot
           elsif respond_to?(:call)
             send(:call, client, data, match) if permitted?(client, data, match)
           else
-            Rails.logger.warn "Not implemented in #{name}: #{data.text} - #{match.inspect}"
+            ::App['logger'].warn "Not implemented in #{name}: #{data.text} - #{match.inspect}"
             # raise NotImplementedError, data.text
             # NOOP here because raising an error is dumb
           end
+        rescue StandardError => e
+          ::App['logger'].error "Error: #{e.message}"
+          raise
         end
       end
     end

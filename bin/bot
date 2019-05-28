@@ -1,3 +1,5 @@
 #!/usr/bin/env ruby
 require ::File.expand_path('../../config/environment', __FILE__)
-Boardy::Bot.run
+server = Boardy::Bot.instance
+server.on(:user_change, Hooks::UserChange.new)
+server.run
