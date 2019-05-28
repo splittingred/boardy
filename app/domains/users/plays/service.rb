@@ -5,8 +5,8 @@ module Users
         plays(user: user, game: game).to_a.any?
       end
 
-      def plays(user:, game:)
-        ::Bgg::Request::Plays.board_games(user.bgg_username, game.bgg_id, page: 1).get
+      def plays(user:, game: nil)
+        ::Bgg::Request::Plays.board_games(user.bgg_username, game&.bgg_id, page: 1).get
       end
     end
   end

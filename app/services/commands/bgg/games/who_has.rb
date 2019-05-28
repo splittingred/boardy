@@ -5,6 +5,7 @@ module Commands
     module Games
       class WhoHas < ::Commands::Base
         on :command, 'who has'
+        on :command, 'who owns'
 
         def call
           game_name = expression.to_s.chomp('?')
