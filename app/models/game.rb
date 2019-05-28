@@ -1,6 +1,12 @@
 class Game < ApplicationRecord
   scope :with_name, ->(name) { where(name: name) }
   scope :with_bgg_id, ->(bgg_id) { where(bgg_id: bgg_id) }
+  scope :in_player_range, ->(min, max) { where('min_players <= ? AND max_players >= ?', min, max) }
+  scope :highest_rank, -> { board_game_ranked.order(board_game_rank: :asc) }
+  scope :board_game_ranked, -> { where('board_game_rank > ?', 0) }
+  scope :within_time_range, ->(min, max) { where('min_playtime >= ? AND max_playtime <= ?', min, max) }
+  scope :random, -> { order('RAND()') }
+  scope :owned, -> { joins(:user_games).where('user_games.owned = 1') }
 
   has_many :user_games
   has_many :users, through: :user_games
