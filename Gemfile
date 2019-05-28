@@ -7,7 +7,8 @@ end
 
 gem 'bgg', git: 'https://github.com/carmstrong/bgg.git'
 gem 'celluloid-io'
-gem 'dry-system'
+gem 'dry-system', '~> 0.10.1'
+gem 'dry-types', '~> 0.13.2'
 gem 'faraday'
 gem 'foreman'
 gem 'hashie'

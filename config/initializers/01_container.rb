@@ -1,4 +1,6 @@
 require 'dry/system/container'
+require 'dry/types'
+require 'dry/struct'
 
 class App < Dry::System::Container
   configure do |config|
@@ -13,4 +15,7 @@ class App < Dry::System::Container
 end
 
 Import = App.injector
-#App.finalize! if Rails.env.production?
+
+module Types
+  include Dry::Types.module
+end

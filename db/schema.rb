@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190527200357) do
+ActiveRecord::Schema.define(version: 20190528003050) do
 
   create_table "games", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "bgg_id"
@@ -42,6 +42,22 @@ ActiveRecord::Schema.define(version: 20190527200357) do
     t.index ["name"], name: "index_games_on_name"
     t.index ["strategic_rank"], name: "index_games_on_strategic_rank"
     t.index ["thematic_rank"], name: "index_games_on_thematic_rank"
+  end
+
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "bgg_username"
+    t.string "slack_id"
+    t.string "slack_team_id"
+    t.string "slack_username"
+    t.string "email"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bgg_username"], name: "index_users_on_bgg_username"
+    t.index ["email"], name: "index_users_on_email"
+    t.index ["slack_id"], name: "index_users_on_slack_id"
   end
 
 end

@@ -1,3 +1,5 @@
+require 'users/errors'
+
 module Commands
   class Base < ::SlackRubyBot::Commands::Base
     attr_accessor :client
@@ -10,16 +12,18 @@ module Commands
       @client = client
       @data = data
       @match = match
+      @users_repository = App['users.repository']
       user
     end
 
-    # def user
-    #   unless @user.present?
-    #     @user = UserRepository.find_by_slack_id(data.user)
-    #     raise StandardError, "User not found with ID: #{data.user}" unless @user.present?
-    #   end
-    #   @user
-    # end
+    def user
+      unless @user.present?
+        raise Users::Errors::UserNotFound, 'No user present in base command data' unless data.user
+        @user = @users_repository.find_by_slack_id(data.user)
+        raise Users::Errors::UserNotFound, "User not found with ID: #{data.user}" unless @user.present?
+      end
+      @user
+    end
 
     def call
       raise NotImplementedError
