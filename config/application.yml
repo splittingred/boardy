@@ -1,7 +1,7 @@
 defaults: &defaults
   url: "https://ag-boardy.herokuapp.com"
   logging: &logging
-    level: "<%= ENV.fetch('LOG_LEVEL', 'info') %>"
+    level: "<%= ENV.fetch('LOG_LEVEL', 'debug') %>"
     slack_bot_level: "<%= ENV.fetch('SLACK_API_LOG_LEVEL', 'info') %>"
     slack_api_level: "<%= ENV.fetch('SLACK_BOT_LOG_LEVEL', 'info') %>"
   redis: &redis

@@ -26,7 +26,7 @@ class User < ApplicationRecord
   #
   def to_entity
     ugs = []
-    user_games.joins(:game).each do |ug|
+    user_games.includes(:game).references(:game).each do |ug|
       uge = ug.to_entity
       uge.game_name = ug.game.name
       uge.game_bgg_id = ug.game.bgg_id
