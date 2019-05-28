@@ -15,7 +15,7 @@ module Commands
             return
           end
 
-          games = plays.plays(user: user).to_a[0..3]
+          games = plays.plays(user: user).to_a[0..4]
 
           out = []
           out << "#{user.bgg_username} last played:" if games.any?
