@@ -5,6 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'active_scheduler'
 gem 'bgg', git: 'https://github.com/carmstrong/bgg.git'
 gem 'celluloid-io'
 gem 'dotenv-rails'
@@ -19,6 +20,7 @@ gem 'puma', '~> 3.7'
 gem 'rails', '~> 5.2'
 gem 'redis'
 gem 'resque'
+gem 'resque-scheduler'
 gem 'settingslogic'
 
 gem 'async-websocket',          '~> 0.8.0'

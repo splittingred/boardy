@@ -13,7 +13,7 @@ module Commands
       @client = client
       @data = data
       @match = match
-      @users = App['users.repository']
+      @users = App['users.service']
       @games = App['games.service']
       user
     end

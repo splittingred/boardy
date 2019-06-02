@@ -3,12 +3,12 @@ module Collections
     include Import[
       logger: 'logger',
       slack: 'slack.web.client',
-      users_repository: 'users.repository'
+      users: 'users.service'
     ]
 
     def index(username:, reindex: false, channel: nil)
       logger.info "Indexing collection for user: #{username}"
-      user = users_repository.find_by_bgg_username(username)
+      user = users.find_by_usernames(username)
       collection = lookup(user: user)
       collection.each do |item|
         game = ::Game.with_bgg_id(item.id).first
@@ -23,7 +23,7 @@ module Collections
       end
 
       user.collection_indexed = true
-      users_repository.save(user)
+      users.save(user)
 
       notify(username: username, channel: channel) if channel.to_s.present?
       true

@@ -1,4 +1,3 @@
-
 module Games
   module Suggestions
     ##

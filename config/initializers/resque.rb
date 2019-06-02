@@ -6,3 +6,5 @@ pw = ENV.fetch('REDIS_PASSWORD', '').to_s
 data[:password] = pw if pw.present?
 Resque.redis = App['redis']
 Resque.logger.level = Logger::INFO
+
+ActiveJob::Base.queue_adapter = :resque

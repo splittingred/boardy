@@ -7,6 +7,17 @@ module Users
     ]
 
     ##
+    # Return all users
+    #
+    # @return [Entities::Collection<Entities::User>]
+    #
+    def all
+      total = User.count
+      entities = User.find_each.map(&:to_entity)
+      Entities::Collection.new(entities: entities, total: total)
+    end
+
+    ##
     # Find a user by its ID
     #
     # @param [Integer] id
@@ -31,6 +42,9 @@ module Users
 
     ##
     # Find by either slack or bgg username or slack ID
+    #
+    # @param [String] username
+    # @return [Entities::User]
     #
     def find_by_usernames(username)
       user = ::User.where('bgg_username = ? OR slack_username = ? OR slack_id = ?', username, username, username).first!

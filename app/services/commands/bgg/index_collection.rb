@@ -8,7 +8,7 @@ module Commands
         reindex = expression.split(' ').last == 'true'
         user = find_user(username)
 
-        ::Users::IndexCollectionJob.perform_later(user.bgg_username, reindex, channel)
+        users.index_collection!(user: user, reindex: reindex, channel: channel)
 
         say "Collection indexing begun for #{user.bgg_username}"
       rescue Games::Errors::GameNotFound => _
