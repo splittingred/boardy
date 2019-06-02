@@ -4,7 +4,7 @@ reindex_collections:
   # every: 1h
   # By default the job name (hash key) will be taken as worker class name.
   # If you want to have a different job name and class name, provide the 'class' option
-  class: "Collections::Jobs::Reindex"
+  class: "Collections::Jobs::ReindexAll"
   queue: default
   args:
   description: "Re-indexes collections for all registered users"
