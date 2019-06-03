@@ -2,7 +2,7 @@ module Commands
   module Bgg
     module Suggestions
       class Game < ::Commands::Base
-        on :match, /^(?<bot>\S*) suggest a (?<types>(.*)) game for (?<players>\d*)/i
+        on :match, /^(?<bot>\S*) suggest a (?<types>(.*)) game for (?<players>\d*) players/i
 
         def call
           players = (match[:players] || 4).to_i
@@ -23,12 +23,18 @@ module Commands
             max_time = 9_999
           end
 
+          played = nil
+          played = true if types.include?('played')
+          played = false if types.include?('unplayed')
+
           game = suggestions.search(
             player_count: players,
             min_time: min_time,
             max_time: max_time,
             ranked: ranked,
             random: random,
+            played: played,
+            users: users.all,
             limit: 100
           )
 

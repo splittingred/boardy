@@ -7,6 +7,8 @@ class Game < ApplicationRecord
   scope :within_time_range, ->(min, max) { where('min_playtime >= ? AND max_playtime <= ?', min, max) }
   scope :random, -> { order('RAND()') }
   scope :owned, -> { joins(:user_games).where('user_games.owned = 1') }
+  scope :played, ->(user_ids) { joins(:user_games).where('user_games.user_id IN (?) AND user_games.play_count > 0', user_ids.join(',')) }
+  scope :unplayed, ->(user_ids) { joins(:user_games).where('user_games.user_id IN (?) AND user_games.play_count = 0', user_ids.join(',')) }
 
   has_many :user_games
   has_many :users, through: :user_games
