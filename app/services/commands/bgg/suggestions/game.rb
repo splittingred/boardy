@@ -2,7 +2,7 @@ module Commands
   module Bgg
     module Suggestions
       class Game < ::Commands::Base
-        on :match, /^(?<bot>\S*) suggest a (?<types>(.*)) game for (?<players>\d*) players/i
+        on :match, /^(?<bot>\S*) suggest a (?<types>(.*))game for (?<players>\d*) players/i
 
         def call
           players = (match[:players] || 4).to_i
