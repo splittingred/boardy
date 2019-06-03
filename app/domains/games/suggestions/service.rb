@@ -15,7 +15,7 @@ module Games
 
         if played.is_a?(TrueClass)
           q = q.played(users.map(&:id))
-        else
+        elsif played.is_a?(FalseClass)
           q = q.unplayed(users.map(&:id))
         end
 
