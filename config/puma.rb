@@ -7,6 +7,13 @@ environment ENV.fetch('RAILS_ENV', 'development')
 
 workers ENV.fetch('WEB_CONCURRENCY', 2)
 
+app_dir = File.expand_path("../..", __FILE__)
+shared_dir = "#{app_dir}/shared"
+bind "unix://#{shared_dir}/puma.sock"
+pidfile "#{shared_dir}/pids/puma.pid"
+state_path "#{shared_dir}/pids/puma.state"
+activate_control_app
+
 preload_app!
 
 plugin :tmp_restart
