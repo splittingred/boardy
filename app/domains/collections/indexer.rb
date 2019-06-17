@@ -85,16 +85,17 @@ module Collections
     # Store user statistics for the game
     #
     def persist_user_game(game:, item:, user:)
-      ::UserGame.create!(
+      ug = ::UserGame.first_or_initialize(
         user_id: user.id,
         game_id: game.id,
-        owned: item.owned?,
-        user_rating: item.user_rating.to_i,
-        play_count: item.play_count.to_i,
-        for_trade: item.for_trade?,
-        want_to_buy: item.want_to_buy?,
-        want_to_play: item.want_to_play?
       )
+      ug.owned = item.owned?
+      ug.user_rating = item.user_rating.to_i
+      ug.play_count = item.play_count.to_i
+      ug.for_trade = item.for_trade?
+      ug.want_to_buy = item.want_to_buy?
+      ug.want_to_play = item.want_to_play?
+      ug
     end
 
     ##
