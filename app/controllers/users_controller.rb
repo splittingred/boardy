@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def collection
     user = users_service.find_by_usernames(username_param)
-    collection = collections_service.find_for_user(user, limit: limit_param)
+    collection = collections_service.find_for_user(user, start: start_param, limit: limit_param)
 
     render json: { games: collection, total: collection.total }
   end

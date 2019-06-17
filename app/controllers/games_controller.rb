@@ -4,7 +4,7 @@ require 'games/errors'
 
 class GamesController < ApplicationController
   def index
-    games = games_service.list(limit: limit_param)
+    games = games_service.list(start: start_param, limit: limit_param)
     render json: games.to_json
   end
 

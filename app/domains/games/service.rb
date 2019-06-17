@@ -75,12 +75,13 @@ module Games
     end
 
     ##
+    # @param [Integer] start
     # @param [Integer] limit
     # @return [Entities::Collection<Entities::Game>]
     #
-    def list(limit: 10)
+    def list(start: 0, limit: 10)
       total = ::Game.count
-      games = ::Game.order(name: :asc).limit(limit)
+      games = ::Game.order(name: :asc).offset(start).limit(limit)
       Entities::Collection.new(
         entities: games.map(&:to_entity),
         total: total

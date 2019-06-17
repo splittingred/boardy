@@ -5,6 +5,10 @@ class ApplicationController < ActionController::API
     params.fetch(:limit, 20).to_i
   end
 
+  def start_param
+    params.fetch(:start, 0).to_i
+  end
+
   rescue_from StandardError do |e|
     ::Boardy::Container['logger'].error e.message
     render json: { error: 'Unknown error' }, status: 500
