@@ -38,7 +38,7 @@ class Game < ApplicationRecord
       users_rated: users_rated,
       owners: owners,
       owned_by: owned_by,
-      mechanics: mechanics.split(','),
+      mechanics: mechanics.split(',').map(&:strip),
       created_at: DateTime.now,
       updated_at: DateTime.now
     )
