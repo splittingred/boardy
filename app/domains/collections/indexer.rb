@@ -85,10 +85,10 @@ module Collections
     # Store user statistics for the game
     #
     def persist_user_game(game:, item:, user:)
-      ug = ::UserGame.first_or_initialize(
+      ug = ::UserGame.where(
         user_id: user.id,
         game_id: game.id,
-      )
+      ).first_or_initialize
       ug.owned = item.owned?
       ug.user_rating = item.user_rating.to_i
       ug.play_count = item.play_count.to_i
