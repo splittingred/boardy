@@ -26,12 +26,12 @@ module SlackRubyBot
           elsif respond_to?(:call)
             send(:call, client, data, match) if permitted?(client, data, match)
           else
-            ::App['logger'].warn "Not implemented in #{name}: #{data.text} - #{match.inspect}"
+            ::Boardy::Container['logger'].warn "Not implemented in #{name}: #{data.text} - #{match.inspect}"
             # raise NotImplementedError, data.text
             # NOOP here because raising an error is dumb
           end
         rescue StandardError => e
-          ::App['logger'].error "Error: #{e.message}"
+          ::Boardy::Container['logger'].error "Error: #{e.message}"
           raise
         end
       end

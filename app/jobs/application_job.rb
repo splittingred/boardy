@@ -1,5 +1,5 @@
 class ApplicationJob < ActiveJob::Base
   def logger
-    App['logger']
+    Boardy::Container['logger']
   end
 end

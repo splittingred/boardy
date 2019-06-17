@@ -14,7 +14,7 @@ module Collections
       private
 
       def users
-        App['users.service']
+        Boardy::Container['users.service']
       end
     end
   end

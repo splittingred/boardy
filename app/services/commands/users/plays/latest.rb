@@ -49,7 +49,7 @@ module Commands
         private
 
         def plays
-          @plays ||= App['users.plays.service']
+          @plays ||= Boardy::Container['users.plays.service']
         end
       end
     end

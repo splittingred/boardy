@@ -1,10 +1,24 @@
+# frozen_string_literal: true
+
 require 'htmlentities'
 
 module Games
   class Service
-    include Import[
+    include ::Boardy::Import[
       logger: 'logger'
     ]
+
+    def find(id)
+      game = ::Game.find_by_bgg_id!(id)
+      game.to_entity
+    rescue ActiveRecord::RecordNotFound => _e
+      bgg_game = ::Bgg::Game.find_by_id(id)
+      map_game(bgg_game).to_entity
+    rescue StandardError || RuntimeError => e
+      raise ::Games::Errors::ResultProcessing if e.message.include?('202')
+      logger.error "Error loading game: #{e.message} - #{e.backtrace[0..4].join("\n")}"
+      raise
+    end
 
     ##
     # @return [Entities::Game]
@@ -58,6 +72,19 @@ module Games
       raise Games::Errors::ResultProcessing if e.message.include?('202')
       logger.error "Error loading collection: #{e.message}"
       raise
+    end
+
+    ##
+    # @param [Integer] limit
+    # @return [Entities::Collection<Entities::Game>]
+    #
+    def list(limit: 10)
+      total = ::Game.count
+      games = ::Game.order(name: :asc).limit(limit)
+      Entities::Collection.new(
+        entities: games.map(&:to_entity),
+        total: total
+      )
     end
 
     private

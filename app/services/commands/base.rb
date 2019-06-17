@@ -13,8 +13,8 @@ module Commands
       @client = client
       @data = data
       @match = match
-      @users = App['users.service']
-      @games = App['games.service']
+      @users = Boardy::Container['users.service']
+      @games = Boardy::Container['games.service']
       user
     end
 

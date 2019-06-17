@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Games
   module Errors
     class Error < StandardError; end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_28_155048) do
+ActiveRecord::Schema.define(version: 2019_06_17_015944) do
 
   create_table "games", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "bgg_id"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2019_05_28_155048) do
     t.boolean "want_to_buy", default: false
     t.boolean "want_to_play", default: false
     t.index ["game_id"], name: "index_user_games_on_game_id"
-    t.index ["user_id", "game_id"], name: "index_user_games_on_user_id_and_game_id"
+    t.index ["user_id", "game_id"], name: "index_user_games_on_user_id_and_game_id", unique: true
     t.index ["user_id"], name: "index_user_games_on_user_id"
   end
 

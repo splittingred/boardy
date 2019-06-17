@@ -5,6 +5,8 @@ class UserGame < ApplicationRecord
   def to_entity
     Entities::UserGame.new(
       game_id: game_id.to_i,
+      game_name: game.name.to_s,
+      game_bgg_id: game.bgg_id.to_i,
       user_id: user_id.to_i,
       owned: owned?,
       user_rating: user_rating,

@@ -2,7 +2,7 @@ require_relative 'errors'
 
 module Users
   class Repository
-    include Import[
+    include ::Boardy::Import[
       slack: 'slack.clients.user'
     ]
 
@@ -113,7 +113,7 @@ module Users
     end
 
     def cache_client
-      @cache_client ||= App['users.cache']
+      @cache_client ||= Boardy::Container['users.cache']
     end
   end
 end

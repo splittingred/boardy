@@ -20,7 +20,7 @@ module Entities
     attribute :owners,          Types::Integer
     attribute :mechanics,       Types::Array.of(Types::String)
     attribute :owned_by,        Types::Array.of(Types::String)
-    attribute :created_at, Types::DateTime
-    attribute :updated_at, Types::DateTime.optional
+    attribute :created_at,      Types::DateTime.optional
+    attribute :updated_at,      Types::DateTime.optional
   end
 end

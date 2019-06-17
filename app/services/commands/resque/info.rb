@@ -3,7 +3,7 @@ module Commands
     class Info < ::Commands::Base
       on :command, 'resque info'
 
-      include ::Import[
+      include ::Boardy::Import[
         redis: 'redis'
       ]
 

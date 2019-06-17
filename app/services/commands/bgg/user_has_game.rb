@@ -1,3 +1,5 @@
+require 'games/errors'
+
 module Commands
   module Bgg
     class UserHasGame < ::Commands::Base
@@ -24,9 +26,9 @@ module Commands
         else
           say "#{username} does not have #{desired_game}"
         end
-      rescue Games::Errors::ResultProcessing
+      rescue ::Games::Errors::ResultProcessing
         say 'Boardgamegeek is currently processing this request. Try back in a few.'
-      rescue StandardError => e
+      rescue ::StandardError => e
         say e.message
       end
 

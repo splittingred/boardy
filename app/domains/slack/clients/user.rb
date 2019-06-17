@@ -1,7 +1,7 @@
 module Slack
   module Clients
     class User
-      include Import[
+      include ::Boardy::Import[
         client: 'slack.web.client',
         logger: 'logger'
       ]

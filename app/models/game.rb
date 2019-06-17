@@ -16,14 +16,14 @@ class Game < ApplicationRecord
   validates_presence_of :name, :bgg_id
 
   def to_entity
-    owned_by = users.where(user_games: { owned: true }).map(&:bgg_username)
+    owned_by = users.where(user_games: { owned: true }).map(&:bgg_username).uniq
 
     Entities::Game.new(
       id: id,
       bgg_id: bgg_id,
       name: name,
       description: description,
-      year_published: year_published,
+      year_published: year_published.to_i,
       min_players: min_players.to_i,
       max_players: max_players.to_i,
       min_playtime: min_playtime.to_i,
@@ -38,7 +38,9 @@ class Game < ApplicationRecord
       users_rated: users_rated,
       owners: owners,
       owned_by: owned_by,
-      mechanics: mechanics.split(',')
+      mechanics: mechanics.split(','),
+      created_at: DateTime.now,
+      updated_at: DateTime.now
     )
   end
 end

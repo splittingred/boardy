@@ -1,6 +1,6 @@
 module Collections
   class Indexer
-    include Import[
+    include ::Boardy::Import[
       logger: 'logger',
       slack: 'slack.web.client',
       users: 'users.service'

@@ -1,6 +1,6 @@
 module Hooks
   class UserChange
-    include Import[
+    include ::Boardy::Import[
       users: 'users.service'
     ]
 

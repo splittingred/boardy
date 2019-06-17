@@ -1,6 +1,6 @@
 module Users
   class Service
-    include Import[
+    include ::Boardy::Import[
       repository: 'users.repository'
     ]
 

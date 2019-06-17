@@ -46,7 +46,7 @@ module Commands
         end
 
         def suggestions
-          @suggestions ||= App['games.suggestions.service']
+          @suggestions ||= Boardy::Container['games.suggestions.service']
         end
       end
     end
