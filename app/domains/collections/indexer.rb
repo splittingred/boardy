@@ -95,6 +95,7 @@ module Collections
       ug.for_trade = item.for_trade?
       ug.want_to_buy = item.want_to_buy?
       ug.want_to_play = item.want_to_play?
+      ug.save!
       ug
     end
 
