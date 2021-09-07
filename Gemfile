@@ -34,7 +34,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'sass-rails', '~> 5.0'
 
 group :development, :test do
-  gem 'better_errors', '~> 2.1.1'
+  gem 'better_errors', '~> 2.8.0'
   gem 'binding_of_caller', '~> 0.7.2'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
